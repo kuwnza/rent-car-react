@@ -1,7 +1,11 @@
+import { useAuth } from "../contexts/AuthContext";
+
 function Home() {
+  const { isAuthenticated } = useAuth();
     return (
-      <div className="overflow-x-auto mx-20 my-10">
-        <table className="table">
+      <div className="mx-20 my-10">
+        {isAuthenticated ? (
+          <table className="table">
           <thead>
             <tr>
               <th>id</th>
@@ -27,6 +31,7 @@ function Home() {
             </tr>
           </tbody>
         </table>
+        ) : "You are not logged in"}
       </div>
     );
 }

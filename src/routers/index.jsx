@@ -5,6 +5,11 @@ import CreateCar from "../pages/car/create";
 import Cars from "../pages/car";
 import EditCar from "../pages/car/edit";
 import ErrorPage from "../components/ErrorPage";
+import RequireAuth from "../components/RequireAuth";
+
+import { carById, cars } from "../api/loaders";
+
+import {authRouter} from "../routers/auth";
 
 export const router = createBrowserRouter([
   {
@@ -13,21 +18,29 @@ export const router = createBrowserRouter([
     errorElement: <ErrorPage />,
     children: [
       {
-        path: "/",
-        element: <Home />,
-      },
-      {
-        path: "/cars",
-        element: <Cars /> 
-      },
-      {
-        path: "/cars/create",
-        element: <CreateCar />,
-      },
-      {
-        path: "/cars/:id",
-        element: <EditCar />,
+        element: <RequireAuth />,
+        children: [
+          {
+            path: "/",
+            element: <Home />,
+          },
+          {
+            path: "/cars",
+            element: <Cars />,
+            loader: cars
+          },
+          {
+            path: "/cars/create",
+            element: <CreateCar />,
+          },
+          {
+            path: "/cars/:id",
+            element: <EditCar />,
+            loader: carById
+          }
+        ]
       }
     ],
   },
+  ...authRouter
 ]);
