@@ -17,7 +17,13 @@ function Home() {
               <td>1</td>
               <td>1</td>
               <td>1</td>
-              <td>1</td>
+              <td>
+                <div className="flex gap-3 justify-center">
+                  <button className="btn btn-warning">Edit</button>
+                  <button className="btn btn-primary">View</button>
+                  <button className="btn btn-error">Delete</button>
+                </div>
+              </td>
             </tr>
           </tbody>
         </table>

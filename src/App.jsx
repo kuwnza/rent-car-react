@@ -1,11 +1,10 @@
-import Navbar from "./components/Navbar";
-import Home from "./pages";
+import { RouterProvider } from "react-router-dom";
+import { router } from "./routers";
 
 function App() {
   return (
     <div id="container">
-      <Navbar />
-      <Home />
+      <RouterProvider router={router} />
     </div>
   )
 }
