@@ -1,4 +1,6 @@
 import { useState } from "react";
+import http from "../../api/http"
+import { useNavigate } from "react-router-dom";
 
 function CreateCar() {
   const [car, setCar] = useState({
@@ -12,6 +14,10 @@ function CreateCar() {
     status: "available",
   });
 
+  const [loading, setLoading] = useState(false);
+  const [error, setError] = useState(null);
+  const navigate = useNavigate()
+
   const handleChange = (e) => {
     const { name, value } = e.target;
     setCar((prevCar) => ({
@@ -23,7 +29,11 @@ function CreateCar() {
   const handleSubmit = (e) => {
     e.preventDefault();
     // Handle form submission logic here
-    console.log(car);
+    setLoading(true);
+    http.post("/admin/cars", car).then(() => {
+      setLoading(false);
+      navigate("/cars");
+    }).catch(e => setError(e));
   };
 
   return (
@@ -113,7 +123,7 @@ function CreateCar() {
           />
         </div>
         <button type="submit" className="btn btn-primary">
-          Create Car
+          {loading ? <span className="loading loading-spinner loading-sm"></span> : "Create Car"}
         </button>
       </form>
     </div>

@@ -29,11 +29,12 @@ function Login() {
       const response = await http.post("/auth/login", formData);
 
       if (response.status === 200) {
-        const { token, user } = response.data;
+        const { token } = response.data;
         const cookies = new Cookies();
         cookies.set("token", token, { path: "/" });
-        login(user);
-        navigate("/");
+        http.get("/user/info").then(res => {
+          login(res.data.data);
+        });
       } else {
         throw new Error("Login failed");
       }

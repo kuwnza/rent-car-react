@@ -1,11 +1,13 @@
+import { useLoaderData } from "react-router-dom";
 import { useAuth } from "../contexts/AuthContext";
 
 function Home() {
-  const { isAuthenticated } = useAuth();
+  const { isAuthenticated, user } = useAuth();
+  const cars = useLoaderData().data;
     return (
       <div className="mx-20 my-10">
-        {isAuthenticated ? (
-          <table className="table">
+        <h1 className="text-2xl font-bold">Welcome, {user.name}</h1>
+        {isAuthenticated ? cars.length < 1 ? "You don't have any rents active" : (<table className="table">
           <thead>
             <tr>
               <th>id</th>
@@ -16,22 +18,19 @@ function Home() {
             </tr>
           </thead>
           <tbody>
-            <tr>
-              <td>1</td>
-              <td>1</td>
-              <td>1</td>
-              <td>1</td>
-              <td>
-                <div className="flex gap-3 justify-center">
-                  <button className="btn btn-warning">Edit</button>
-                  <button className="btn btn-primary">View</button>
-                  <button className="btn btn-error">Delete</button>
-                </div>
-              </td>
-            </tr>
+            {cars.map((car) => (
+              <tr key={car.id}>
+                <td>{car.id}</td>
+                <td>{car.name}</td>
+                <td>{car.status}</td>
+                <td>{car.owner}</td>
+                <td>
+                  <a href={`/cars/${car.id}`}>Edit</a>
+                </td>
+              </tr>
+            ))}
           </tbody>
-        </table>
-        ) : "You are not logged in"}
+        </table>) : "You are not logged in"}
       </div>
     );
 }
