@@ -37,13 +37,16 @@ function Navbar() {
                 <NavLink to={"/cars"}>Cars</NavLink>
               </li>
               <li>
-                <NavLink to={"/rent"}>Rent</NavLink>
+                <NavLink to={"/rents"}>Rent</NavLink>
               </li>
               <li>
-                <NavLink to={"/return"}>Return</NavLink>
+                <NavLink to={"/returns"}>Return</NavLink>
               </li>
               <li>
                 <NavLink to={"/pinalties"}>Pinalties</NavLink>
+              </li>
+              <li>
+                <NavLink to={"/users"}>Users</NavLink>
               </li>
               <li>
                 <NavLink to={"/register"}>Register</NavLink>
@@ -61,13 +64,16 @@ function Navbar() {
               <NavLink to={"/cars"}>Cars</NavLink>
             </li>
             <li>
-              <NavLink to={"/rent"}>Rent</NavLink>
+              <NavLink to={"/rents"}>Rent</NavLink>
             </li>
             <li>
-              <NavLink to={"/return"}>Return</NavLink>
+              <NavLink to={"/returns"}>Return</NavLink>
             </li>
             <li>
               <NavLink to={"/pinalties"}>Pinalties</NavLink>
+            </li>
+            <li>
+              <NavLink to={"/users"}>Users</NavLink>
             </li>
             <li>
               <NavLink to={"/register"}>Register</NavLink>
